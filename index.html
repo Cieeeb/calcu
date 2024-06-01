@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #011128;
+        }
+
+        .box {
+            width: 90%;
+            max-width: 420px;
+            padding: 20px;
+            background: black;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 3px solid #020700;
+            border-radius: 10px;
+        }
+
+        .output {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #032a2a;
+            background: transparent;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: right;
+            box-sizing: border-box;
+        }
+
+        .btn-glry {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .btn {
+            border: 2px solid black;
+            background: transparent;
+            text-align: center;
+            color: #33ccff !important;
+            height: 3em;
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-2 {
+            grid-column: span 2;
+            background: linear-gradient(to bottom, #00ff99 0%, #66ccff 100%);
+        }
+
+        .btn-d {
+            color: white !important;
+            background: linear-gradient(to bottom, #ff0066 50%, #ff0066 50%);
+        }
+
+        .btn:hover {
+            background: linear-gradient(to bottom, #66ff33 0%, #66ffff 100%);
+            color: black !important;
+        }
+
+        @media screen and (max-width: 480px) {
+            .btn {
+                font-size: 1em;
+                height: 2.5em;
+            }
+
+            .btn-2 {
+                grid-column: span 2;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            .btn {
+                font-size: 0.8em;
+                height: 2em;
+            }
+
+            .btn-2 {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <form class="count" action="index.html" method="post">
+        <input type="text" name="display" id="display" value="" class="output">
+        <div class="btn-glry">
+            <input type="button" value="C" class="btn btn-2" onclick="clearDisplay()">
+            <input type="button" value="÷" class="btn" onclick="appendValue('/')">
+            <input type="button" value="×" class="btn" onclick="appendValue('*')">
+            <input type="button" value="1" class="btn" onclick="appendValue('1')">
+            <input type="button" value="2" class="btn" onclick="appendValue('2')">
+            <input type="button" value="3" class="btn" onclick="appendValue('3')">
+            <input type="button" value="-" class="btn" onclick="appendValue('-')">
+            <input type="button" value="4" class="btn" onclick="appendValue('4')">
+            <input type="button" value="5" class="btn" onclick="appendValue('5')">
+            <input type="button" value="6" class="btn" onclick="appendValue('6')">
+            <input type="button" value="+" class="btn" onclick="appendValue('+')">
+            <input type="button" value="7" class="btn" onclick="appendValue('7')">
+            <input type="button" value="8" class="btn" onclick="appendValue('8')">
+            <input type="button" value="9" class="btn" onclick="appendValue('9')">
+            <input type="button" value="=" class="btn" onclick="calculate()">
+            <input type="button" value="0" class="btn" onclick="appendValue('0')">
+            <input type="button" value="00" class="btn" onclick="appendValue('00')">
+            <input type="button" value="." class="btn" onclick="appendValue('.')">
+            <input type="button" value="Del" class="btn btn-d" onclick="deleteLast()">
+        </div>
+    </form>
+    <div class="copy"></div>
+</div>
+
+<script>
+    const display = document.getElementById('display');
+
+    function clearDisplay() {
+        display.value = '';
+    }
+
+    function appendValue(value) {
+        display.value += value;s
+    }
+
+    function deleteLast() {
+        display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+        try {
+            display.value = eval(display.value);
+        } catch (e) {
+            display.value = 'Error';
+        }
+    }
+</script>
+
+</body>
+</html>
